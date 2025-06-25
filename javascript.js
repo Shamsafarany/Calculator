@@ -3,6 +3,7 @@ const numbers = document.querySelectorAll(".number");
 const signs = document.querySelectorAll(".sign");
 const equal = document.querySelector("#equal");
 const clear = document.querySelector("#clear");
+const delete1 = document.querySelector("#delete");
 let start = false;
 function add (op1, op2) {
     return op1 + op2;
@@ -26,7 +27,6 @@ function divide (op1, op2) {
 }
 
 let op1, op2, op, res;
-
 function operate (op1, op2, op) {
     switch(op) {
         case '+': res = add(op1, op2);
@@ -46,21 +46,71 @@ for (let i = 0; i < numbers.length; i++) {
             screen.innerHTML = "";
             start = true;
         }
-        if(screen.textContent.length < 10) {
+        if ((screen.classList.contains("flag2"))) {
+            screen.textContent = "";
+            screen.textContent = `${numbers[i].textContent}`;
+            screen.classList.remove("flag2");
+        } else {
+            if(screen.textContent.length < 10) {
             screen.textContent += `${numbers[i].textContent}`;
+        }
+        
         }
         
     })
 }
 for (let i = 0; i < signs.length; i++){
-    console.log(signs[i].textContent);
     signs[i].addEventListener("click", () => {
-        screen.textContent += `${signs[i].textContent}`;
+        if (!screen.classList.contains("flag")){
+            screen.textContent += `${signs[i].textContent}`;
+            screen.classList.add("flag");
+            screen.classList.remove("flag2");
+        } else {
+            getOperators();
+            let currentRes = operate(op1, op2, op);
+            console.log(currentRes);   
+            if (currentRes === null) {
+                screen.textContent= "Error!";
+                screen.textContent="0";
+                 start = false;
+               
+            } else {
+                 currentRes = Math.round((currentRes* 100))/ 100;
+                screen.innerHTML = `=${currentRes}`;
+            }
+            screen.textContent += `${signs[i].textContent}`;
+            screen.classList.add("flag");
+            
+            start = true;
+        }
+            
     })
 }
 
-
 equal.addEventListener("click", () => {
+    getOperators();
+    let currentRes = operate(op1, op2, op);
+    console.log(currentRes);
+    if (currentRes === null) {
+        screen.textContent= "Error!";
+        screen.classList.add("flag2");
+    } else {
+        currentRes = Math.round((currentRes* 100))/ 100;
+        screen.innerHTML = `=${currentRes}`;
+        screen.classList.add("flag2");
+    }
+    screen.classList.remove("flag");
+    
+    start = true;
+});
+
+clear.addEventListener("click", ()=>{
+    screen.innerHTML = "0";
+    start = false;
+    screen.classList.remove("flag");
+})
+
+function getOperators(){
     let content = screen.innerHTML;
     console.log(content);
     let match= screen.innerHTML.match(/[+\-x/]/);
@@ -78,22 +128,43 @@ equal.addEventListener("click", () => {
     console.log(op);
     console.log(op1);
     console.log(op2);
-    
-    let currentRes = operate(op1, op2, op);
-    console.log(currentRes);
-    currentRes = Math.round((currentRes* 100))/ 100;
-    if (currentRes === null) {
-        screen.textContent= "Error!";
-    } else {
-        screen.innerHTML = `=${currentRes}`;
-    }
-    op1 = Number(currentRes);
-    start = true;
-});
+}
 
-clear.addEventListener("click", ()=>{
-    screen.innerHTML = "0";
-    start = false;
+delete1.addEventListener("click", () => {
+    screen.textContent = screen.textContent.slice(0, -1);
 })
+
+document.addEventListener("keydown", function(e) {
+    const key = e.key;
+    if (start === false) {
+            screen.innerHTML = "";
+            start = true;
+        }
+
+    if (!isNaN(key)) {
+        screen.textContent += `${key}`;
+    } else if (key === "Enter" || key === "=") {
+      getOperators();
+        let currentRes = operate(op1, op2, op);
+        console.log(currentRes);
+        if (currentRes === null) {
+            screen.textContent= "Error!";
+            screen.classList.add("flag2");
+        } else {
+            currentRes = Math.round((currentRes* 100))/ 100;
+            screen.innerHTML = `=${currentRes}`;
+            screen.classList.add("flag2");
+        }
+        screen.classList.remove("flag");
+        
+        start = true;
+    }else if (['+', '-', 'x', '/', '.'].includes(key)) {
+        screen.textContent += `${key}`;
+    } else if(key=== "Backspace") {
+        screen.textContent = screen.textContent.slice(0, -1);
+    }    
+})
+
+
 
 
