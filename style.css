@@ -19,6 +19,7 @@ body{
     align-items: center;
     padding: 10px;
     background-color: rgb(65, 64, 64);
+    box-shadow: 0 0 20px;
 }
 
 .screen{
@@ -35,11 +36,13 @@ body{
     justify-content: flex-end;
     align-items: center;
     max-width: 450px;
+    border-bottom: 1px solid white;
+    border-left: 1px solid white;
+    box-shadow: 0 0 10px;
 }
 
 p{
     max-width: 450px;
-    border: solid red;
     overflow: hidden;
     max-width: 450px;
 }
@@ -51,7 +54,7 @@ p{
     display: flex;
     gap: 10px;
     flex-wrap: wrap;
-    justify-content: center;
+    
     padding: 10px;
     
 }
@@ -71,7 +74,8 @@ button{
     margin-bottom: 10px;
 }
 
-.sign{
+
+.sign, #delete{
     color: white;
     background-color: orange;
     border: none
@@ -81,4 +85,17 @@ button{
     color: white;
     background-color: grey;
     border: none;
+}
+
+button.number:hover{
+    background-color: rgb(172, 170, 170);
+}
+
+button.sign:hover{
+    background-color: rgb(231, 182, 92);
+}
+
+#equal:hover{
+    background-color: rgb(25, 198, 57);
+    box-shadow:0 0 10px;
 }
