@@ -31,6 +31,17 @@ body{
     font-size: 70px;
     text-align: right;
     padding: 10px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    max-width: 450px;
+}
+
+p{
+    max-width: 450px;
+    border: solid red;
+    overflow: hidden;
+    max-width: 450px;
 }
 
 .pad{
@@ -54,9 +65,10 @@ button{
     box-shadow: 0 0 5px;
 }
 
-#clear{
+#clear, #delete{
     margin-right: auto;
     margin-left: 5px;
+    margin-bottom: 10px;
 }
 
 .sign{
