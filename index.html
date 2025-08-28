@@ -1,40 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Calculator</title>
     <script src="javascript.js" defer></script>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
     <div class="container">
-        <div class="screen">
-            <p>0</p>
+      <div class="screen">
+        <p>0</p>
+      </div>
+      <div class="pad">
+        <button class="sign" data-value="+">+</button>
+        <button class="number" data-value="7">7</button>
+        <button class="number" data-value="8">8</button>
+        <button class="number" data-value="9">9</button>
+        <button class="sign" data-value="-">-</button>
+        <button class="number" data-value="4">4</button>
+        <button class="number" data-value="5">5</button>
+        <button class="number" data-value="6">6</button>
+        <button class="sign" data-value="x">x</button>
+        <button class="number" data-value="1">1</button>
+        <button class="number" data-value="2">2</button>
+        <button class="number" data-value="3">3</button>
+        <button class="sign" data-value="/">/</button>
+        <button class="number" data-value="0">0</button>
+        <button class="number" data-value=".">.</button>
+        <button id="equal" data-value="=">=</button>
+        <div class="cont2">
+          <button id="clear" class="sign function">AC</button>
+          <button id="delete">DL</button>
         </div>
-        <div class="pad">
-                <button class="sign">+</button>
-                <button class="number">7</button>
-                <button class="number">8</button>
-                <button class="number">9</button>
-                <button class="sign">-</button>
-                <button class="number">4</button>
-                <button class="number">5</button>
-                <button class="number">6</button>
-                <button class="sign">x</button>
-                <button class="number">1</button>
-                <button class="number">2</button>
-                <button class="number">3</button>
-                <button class="sign">/</button>
-                <button class="number">0</button>
-                <button class="number">.</button>
-                <button id="equal">=</button>
-                <div class="cont2">
-                    <button id="clear" class="sign function">AC</button>
-                    <button id="delete">DL</button>
-                </div>
-        </div>
+      </div>
     </div>
-    
-</body>
+  </body>
 </html>
